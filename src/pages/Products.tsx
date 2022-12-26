@@ -1,5 +1,7 @@
+import DefaultLayout from "../layouts/DefaultLayout";
+
 export default function Products() {
   return (
-    <div>Products</div>
+    <DefaultLayout>Products</DefaultLayout>
   )
 }
