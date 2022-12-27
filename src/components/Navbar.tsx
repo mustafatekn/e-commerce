@@ -8,7 +8,14 @@ export default function Navbar() {
             <div className="container mx-auto text-white flex items-center">
                 <div className="text-3xl w-60">Eteration</div>
                 <Search />
-                <div className="w-64">{totalPrice} ₺</div>
+                <div className="w-64 flex items-center">
+                    <div>{totalPrice} ₺</div>
+                    <svg role="img" className="w-5 h-5 inline-block text-white ml-3">
+                        <use xlinkHref="/assets/sprite.svg#user" />
+                    </svg>
+                    User
+                </div>
+
             </div>
         </nav>
     )
