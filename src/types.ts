@@ -4,25 +4,30 @@ export interface IDefaultLayoutProps {
   children: ReactNode;
 }
 
-export interface IProductCardProps{
-    product: Product
+export interface IProductCardProps {
+  product: Product;
 }
 
-export interface IBoxProps{
-    type: string
+export interface IBoxProps {
+  type: string;
 }
 
 export interface ProductState {
-  products: Product[]
-  brands: String[]
-  models: String[]
-  cart: Product[]
+  products: Product[];
+  brands: String[];
+  models: String[];
+  cart: CartItem[];
 }
 
-export interface Products{
-    data: {
-        products: Product[]
-    }
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+export interface Products {
+  data: {
+    products: Product[];
+  };
 }
 export interface Product {
   createdAt: Date;

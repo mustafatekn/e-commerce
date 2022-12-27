@@ -22,10 +22,11 @@ export const productSlice = createSlice({
       state.models = action.payload;
     },
     addToCart: (state, action: PayloadAction<Product>) => {
-      state.cart.push(action.payload);
+      state.cart.push({ product: action.payload, quantity: 1 });
     },
   },
 });
 
-export const { setProducts, setBrands, setModels, addToCart } = productSlice.actions;
+export const { setProducts, setBrands, setModels, addToCart } =
+  productSlice.actions;
 export default productSlice.reducer;
