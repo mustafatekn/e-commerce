@@ -6,6 +6,7 @@ const initialState: ProductState = {
   brands: [],
   models: [],
   cart: [],
+  searchedProducts: [],
 };
 
 export const productSlice = createSlice({
@@ -21,8 +22,8 @@ export const productSlice = createSlice({
     setModels: (state, action: PayloadAction<String[]>) => {
       state.models = action.payload;
     },
-    setCart : (state, action: PayloadAction<CartItem[]>) => {
-        state.cart = action.payload;
+    setCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.cart = action.payload;
     },
     addToCart: (state, action: PayloadAction<Product>) => {
       const index = state.cart.findIndex(
@@ -52,6 +53,11 @@ export const productSlice = createSlice({
       } else --state.cart[index].quantity;
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
+    setSearchedProducts: (state, action: PayloadAction<String>) => {
+      state.searchedProducts = state.products.filter((product: Product) =>
+        product.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+    },
   },
 });
 
@@ -62,6 +68,7 @@ export const {
   addToCart,
   incrementQuantity,
   decrementQuantity,
-  setCart
+  setCart,
+  setSearchedProducts
 } = productSlice.actions;
 export default productSlice.reducer;

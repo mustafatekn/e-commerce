@@ -12,11 +12,19 @@ export interface IBoxProps {
   type: string;
 }
 
+export interface IPaginationProps {
+  productsPerPage: number;
+  totalProductCount: number;
+  setCurrentPage: Function;
+  currentPage: number;
+}
+
 export interface ProductState {
   products: Product[];
   brands: String[];
   models: String[];
   cart: CartItem[];
+  searchedProducts: Product[]
 }
 
 export interface CartItem {
