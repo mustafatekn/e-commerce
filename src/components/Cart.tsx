@@ -1,8 +1,14 @@
-import { useAppSelector } from "../store"
+import { useAppDispatch, useAppSelector } from "../store"
+import { incrementQuantity } from "../store/features/productSlice";
 import { CartItem } from "../types";
 
 export default function Cart() {
   const cart = useAppSelector(state => state.products.cart);
+  const dispatch = useAppDispatch();
+
+  const handleIncrement = (cartItem: CartItem) => {
+    dispatch(incrementQuantity(cartItem));
+  }
 
   return (
     <div className="my-2 w-64">
@@ -16,8 +22,8 @@ export default function Cart() {
             </div>
             <div className="flex items-center">
               <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button">-</button>
-              <span className="bg-primary-blue text-white h-8 flex items-center px-3">1</span>
-              <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button">+</button>
+              <span className="bg-primary-blue text-white h-8 flex items-center px-3">{item.quantity}</span>
+              <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button" onClick={() => handleIncrement(item)}>+</button>
             </div>
           </div>
         ))}
