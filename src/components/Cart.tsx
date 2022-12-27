@@ -18,8 +18,8 @@ export default function Cart() {
     <div className="my-2 w-64">
       <small className="text-slate-500">Cart</small>
       <div className="shadow-md bg-white px-5 py-2 my-2 space-y-2">
-        {cart.length > 0 && cart.map((item: CartItem) => (
-          <div className="flex justify-between items-center">
+        {cart.length > 0 && cart.map((item: CartItem, index: number) => (
+          <div className="flex justify-between items-center" key={index}>
             <div className="flex flex-col">
               <span>{item.product.name}</span>
               <small className="text-primary-blue font-bold">{item.product.price} ₺</small>

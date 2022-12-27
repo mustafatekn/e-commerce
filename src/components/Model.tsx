@@ -2,7 +2,6 @@ import { useAppSelector } from "../store"
 
 export default function Model() {
   const models = useAppSelector(state => state.products.models);
-  console.log(models);
 
   return (
     <div className="my-2 w-64">
