@@ -8,6 +8,10 @@ export interface IProductCardProps{
     product: Product
 }
 
+export interface IBoxProps{
+    type: string
+}
+
 export interface ProductState {
   products: Product[];
 }

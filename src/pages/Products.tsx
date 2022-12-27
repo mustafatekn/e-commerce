@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Brands from "../components/Brands";
 import Cart from "../components/Cart";
+import Checkout from "../components/Checkout";
 import Model from "../components/Model";
 import ProductCard from "../components/ProductCard";
 import Sort from "../components/Sort";
@@ -29,18 +30,19 @@ export default function Products() {
     <DefaultLayout>
       <div className="container mx-auto pt-5">
         <div className="flex">
-          <div className="w-60">
+          <div>
             <Sort />
             <Brands />
             <Model />
           </div>
-          <div className="grid grid-cols-3 flex-1 gap-y-5">
+          <div className="grid grid-cols-4 flex-1 gap-6 mx-6">
             {products.length > 0 && products.map((product: Product) => (
               <ProductCard product={product} key={product.id} />
             ))}
           </div>
-          <div className="w-60">
+          <div>
             <Cart />
+            <Checkout/>
           </div>
         </div>
       </div>
