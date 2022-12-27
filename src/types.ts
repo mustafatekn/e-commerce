@@ -16,6 +16,7 @@ export interface ProductState {
   products: Product[]
   brands: String[]
   models: String[]
+  cart: Product[]
 }
 
 export interface Products{
