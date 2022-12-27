@@ -3,7 +3,8 @@ import { Product, ProductState } from "../../types";
 
 const initialState: ProductState = {
   products: [],
-  brands: []
+  brands: [],
+  models: [],
 };
 
 export const productSlice = createSlice({
@@ -13,11 +14,14 @@ export const productSlice = createSlice({
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
-    setBrands: (state, action) => {
-        state.brands = action.payload;
-    }
+    setBrands: (state, action: PayloadAction<String[]>) => {
+      state.brands = action.payload;
+    },
+    setModels: (state, action: PayloadAction<String[]>) => {
+      state.models = action.payload;
+    },
   },
 });
 
-export const { setProducts, setBrands } = productSlice.actions;
+export const { setProducts, setBrands, setModels } = productSlice.actions;
 export default productSlice.reducer;

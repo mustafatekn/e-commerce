@@ -8,7 +8,7 @@ import Sort from "../components/Sort";
 import DefaultLayout from "../layouts/DefaultLayout";
 import { getProducts } from "../services/productService";
 import { useAppDispatch, useAppSelector } from "../store";
-import { setBrands, setProducts } from "../store/features/productSlice";
+import { setBrands, setModels, setProducts } from "../store/features/productSlice";
 import { Product } from "../types";
 
 export default function Products() {
@@ -21,11 +21,13 @@ export default function Products() {
         const products  = await getProducts();
         dispatch(setProducts(products.data));
         const brands : String[] = [];
+        const models : String[] = [];
         products.data.forEach((product:Product) => {
-          if(brands.includes(product.brand)) return;
-          brands.push(product.brand)
+          if(!brands.includes(product.brand)) brands.push(product.brand)
+          if(!models.includes(product.model)) models.push(product.model);
         })
         dispatch(setBrands(brands));
+        dispatch(setModels(models));
       } catch (error) {
         console.log(error);
       }
