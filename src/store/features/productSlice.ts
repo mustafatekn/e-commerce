@@ -9,6 +9,9 @@ const initialState: ProductState = {
   searchedProducts: [],
   searchedBrands: [],
   searchedModels: [],
+  selectedBrands: [],
+  selectedModels: [],
+  filteredProducts: [],
 };
 
 export const productSlice = createSlice({
@@ -106,6 +109,58 @@ export const productSlice = createSlice({
           break;
       }
     },
+    addSelectedBrand: (state, action: PayloadAction<String>) => {
+      if (!state.selectedBrands.includes(action.payload))
+        state.selectedBrands.push(action.payload);
+    },
+    removeSelectedBrand: (state, action: PayloadAction<String>) => {
+      state.selectedBrands = state.selectedBrands.filter(
+        (i) => i !== action.payload
+      );
+    },
+    addSelectedModel: (state, action: PayloadAction<String>) => {
+      if (!state.selectedModels.includes(action.payload))
+        state.selectedModels.push(action.payload);
+    },
+    removeSelectedModel: (state, action: PayloadAction<String>) => {
+      state.selectedModels = state.selectedModels.filter(
+        (i) => i !== action.payload
+      );
+    },
+    filterProducts: (state) => {
+      if (state.searchedProducts.length > 0) {
+        state.filteredProducts = state.searchedProducts.filter(
+          (product: Product) =>
+            state.selectedBrands.includes(product.brand) &&
+            state.selectedModels.includes(product.model)
+        );
+      } else {
+        if (
+          state.selectedBrands.length > 0 &&
+          state.selectedModels.length > 0
+        ) {
+          state.filteredProducts = state.products.filter(
+            (product: Product) =>
+              state.selectedModels.includes(product.model) ||
+              state.selectedBrands.includes(product.brand)
+          );
+        } else if (
+          !(state.selectedBrands.length > 0) &&
+          state.selectedModels.length > 0
+        ) {
+          state.filteredProducts = state.products.filter((product: Product) =>
+            state.selectedModels.includes(product.model)
+          );
+        } else if (
+          state.selectedBrands.length > 0 &&
+          !(state.selectedModels.length > 0)
+        ) {
+          state.filteredProducts = state.products.filter((product: Product) =>
+            state.selectedBrands.includes(product.brand)
+          );
+        }
+      }
+    },
   },
 });
 
@@ -121,5 +176,10 @@ export const {
   setSearchedBrands,
   setSearchedModels,
   sortProducts,
+  addSelectedBrand,
+  removeSelectedBrand,
+  addSelectedModel,
+  removeSelectedModel,
+  filterProducts,
 } = productSlice.actions;
 export default productSlice.reducer;

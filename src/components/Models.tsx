@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../store"
-import { setSearchedModels } from "../store/features/productSlice";
+import { addSelectedModel, filterProducts, removeSelectedModel, setSearchedModels } from "../store/features/productSlice";
 
-export default function Model() {
+export default function Models() {
   const models = useAppSelector(state => state.products.models);
   const searchedModels = useAppSelector(state => state.products.searchedModels);
   const dispatch = useAppDispatch();
@@ -18,9 +18,25 @@ export default function Model() {
         </div>
         <div className="overflow-y-scroll custom-scrollbar h-48">
           {searchedModels.length > 0 ? searchedModels.map((model: String, index: number) => (
-            <div key={index}><input type="checkbox" /><label className="ml-2">{model}</label></div>
+            <div key={index}><input type="checkbox" onChange={(e) => {
+              if (e.target.checked) {
+                dispatch(addSelectedModel(model))
+                dispatch(filterProducts())
+              } else {
+                dispatch(removeSelectedModel(model))
+                dispatch(filterProducts())
+              }
+            }} /><label className="ml-2">{model}</label></div>
           )) : models.length > 0 && models.map((model: String, index: number) => (
-            <div key={index}><input type="checkbox" /><label className="ml-2">{model}</label></div>
+            <div key={index}><input type="checkbox" onChange={(e) => {
+              if (e.target.checked) {
+                dispatch(addSelectedModel(model))
+                dispatch(filterProducts())
+              } else {
+                dispatch(removeSelectedModel(model))
+                dispatch(filterProducts())
+              }
+            }} /><label className="ml-2">{model}</label></div>
           ))}
         </div>
       </div>

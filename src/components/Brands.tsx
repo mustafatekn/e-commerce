@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../store"
-import { setSearchedBrands } from "../store/features/productSlice";
+import { addSelectedBrand, filterProducts, removeSelectedBrand, setSearchedBrands } from "../store/features/productSlice";
 
 export default function Brands() {
   const brands = useAppSelector(state => state.products.brands);
@@ -19,9 +19,25 @@ export default function Brands() {
         </div>
         <div className="overflow-y-scroll custom-scrollbar h-48">
           {searchedBrands.length > 0 ? searchedBrands.map((brand: String, index: number) => (
-            <div key={index}><input type="checkbox" /><label className="ml-2">{brand}</label></div>
+            <div key={index}><input type="checkbox" onChange={(e) => {
+              if (e.target.checked) {
+                dispatch(addSelectedBrand(brand))
+                dispatch(filterProducts)
+              } else {
+                dispatch(removeSelectedBrand(brand))
+                dispatch(filterProducts)
+              }
+            }} /><label className="ml-2">{brand}</label></div>
           )) : brands.length > 0 && brands.map((brand: String, index: number) => (
-            <div key={index}><input type="checkbox" /><label className="ml-2">{brand}</label></div>
+            <div key={index}><input type="checkbox" onChange={(e) => {
+              if (e.target.checked) {
+                dispatch(addSelectedBrand(brand))
+                dispatch(filterProducts())
+              } else {
+                dispatch(removeSelectedBrand(brand))
+                dispatch(filterProducts())
+              }
+            }} /><label className="ml-2">{brand}</label></div>
           ))}
         </div>
 

@@ -20,13 +20,16 @@ export interface IPaginationProps {
 }
 
 export interface ProductState {
-  products: Product[]
-  brands: String[]
-  models: String[]
-  cart: CartItem[]
-  searchedProducts: Product[]
-  searchedBrands: String[]
-  searchedModels: String[]
+  products: Product[];
+  brands: String[];
+  models: String[];
+  cart: CartItem[];
+  searchedProducts: Product[];
+  searchedBrands: String[];
+  searchedModels: String[];
+  selectedBrands: String[];
+  selectedModels: String[];
+  filteredProducts: Product[];
 }
 
 export interface CartItem {

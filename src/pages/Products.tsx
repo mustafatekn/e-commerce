@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Brands from "../components/Brands";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
-import Model from "../components/Model";
+import Models from "../components/Models";
 import Pagination from "../components/Pagination";
 import ProductCard from "../components/ProductCard";
 import Sort from "../components/Sort";
@@ -30,6 +30,9 @@ export default function Products() {
   )
 
   const dispatch = useAppDispatch();
+  const selectedBrands = useAppSelector(state => state.products.selectedBrands);
+  const selectedModels = useAppSelector(state => state.products.selectedModels);
+  const filteredProducts = useAppSelector(state => state.products.filteredProducts);
 
   useEffect(() => {
     (async () => {
@@ -50,6 +53,7 @@ export default function Products() {
     })();
     //eslint-disable-next-line
   }, [])
+
   return (
     <DefaultLayout>
       <div className="container mx-auto pt-5 ">
@@ -57,11 +61,13 @@ export default function Products() {
           <div>
             <Sort />
             <Brands />
-            <Model />
+            <Models />
           </div>
           <div>
             <div className="grid grid-cols-4 flex-1 gap-6 mx-6">
-              {currentProducts.length > 0 && currentProducts.map((product: Product) => (
+              {(selectedBrands.length > 0 || selectedModels.length > 0) ? filteredProducts.map((product: Product) => (
+                <ProductCard product={product} key={product.id} />
+              )) : currentProducts.map((product: Product) => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </div>
