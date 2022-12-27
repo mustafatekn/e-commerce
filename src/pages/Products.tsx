@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Brands from "../components/Brands";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
@@ -21,15 +21,13 @@ export default function Products() {
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
-  const currentProducts = useMemo(() => {
-    return searchedProducts.length > 0 ? searchedProducts.slice(
-      indexOfFirstProduct,
-      indexOfLastProduct
-    ) : products.slice(
-      indexOfFirstProduct,
-      indexOfLastProduct
-    )
-  },[products, searchedProducts])
+  const currentProducts = searchedProducts.length > 0 ? searchedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  ) : products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  )
 
   const dispatch = useAppDispatch();
 
@@ -67,7 +65,7 @@ export default function Products() {
                 <ProductCard product={product} key={product.id} />
               ))}
             </div>
-            <Pagination currentPage={currentPage} setCurrentPage={(currentPage: number) => setCurrentPage(currentPage)} productsPerPage={productsPerPage} totalProductCount={totalProductCount} />
+            {currentProducts.length > 0 && <Pagination currentPage={currentPage} setCurrentPage={(currentPage: number) => setCurrentPage(currentPage)} productsPerPage={productsPerPage} totalProductCount={totalProductCount} />}
           </div>
           <div>
             <Cart />
