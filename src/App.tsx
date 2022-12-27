@@ -12,6 +12,7 @@ function App() {
     const cart = localStorage.getItem('cart');
     if(!cart) return;
     dispatch(setCart(JSON.parse(cart)));
+    //eslint-disable-next-line
   },[])
   
   return (
