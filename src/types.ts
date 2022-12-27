@@ -14,6 +14,7 @@ export interface IBoxProps{
 
 export interface ProductState {
   products: Product[];
+  brands: String[];
 }
 
 export interface Products{

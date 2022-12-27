@@ -8,7 +8,7 @@ import Sort from "../components/Sort";
 import DefaultLayout from "../layouts/DefaultLayout";
 import { getProducts } from "../services/productService";
 import { useAppDispatch, useAppSelector } from "../store";
-import { setProducts } from "../store/features/productSlice";
+import { setBrands, setProducts } from "../store/features/productSlice";
 import { Product } from "../types";
 
 export default function Products() {
@@ -18,8 +18,14 @@ export default function Products() {
   useEffect(() => {
     (async () => {
       try {
-        const products = await getProducts();
+        const products  = await getProducts();
         dispatch(setProducts(products.data));
+        const brands : String[] = [];
+        products.data.forEach((product:Product) => {
+          if(brands.includes(product.brand)) return;
+          brands.push(product.brand)
+        })
+        dispatch(setBrands(brands));
       } catch (error) {
         console.log(error);
       }
