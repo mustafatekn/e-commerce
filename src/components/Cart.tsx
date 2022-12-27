@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../store"
-import { incrementQuantity } from "../store/features/productSlice";
+import { decrementQuantity, incrementQuantity } from "../store/features/productSlice";
 import { CartItem } from "../types";
 
 export default function Cart() {
@@ -8,6 +8,10 @@ export default function Cart() {
 
   const handleIncrement = (cartItem: CartItem) => {
     dispatch(incrementQuantity(cartItem));
+  }
+
+  const handleDecrement = (cartItem: CartItem) => {
+    dispatch(decrementQuantity(cartItem));
   }
 
   return (
@@ -21,7 +25,7 @@ export default function Cart() {
               <small className="text-primary-blue font-bold">{item.product.price} ₺</small>
             </div>
             <div className="flex items-center">
-              <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button">-</button>
+              <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button" onClick={() => handleDecrement(item)}>-</button>
               <span className="bg-primary-blue text-white h-8 flex items-center px-3">{item.quantity}</span>
               <button className="h-8 w-7 bg-slate-200 rounded-sm" type="button" onClick={() => handleIncrement(item)}>+</button>
             </div>

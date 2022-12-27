@@ -24,14 +24,29 @@ export const productSlice = createSlice({
     addToCart: (state, action: PayloadAction<Product>) => {
       state.cart.push({ product: action.payload, quantity: 1 });
     },
-    incrementQuantity : (state, action:PayloadAction<CartItem>) => {
-        const index = state.cart.findIndex((i:CartItem) => i.product.id === action.payload.product.id);
-        if(index === -1) return;
-        ++state.cart[index].quantity;
-    }
+    incrementQuantity: (state, action: PayloadAction<CartItem>) => {
+      const index = state.cart.findIndex(
+        (i: CartItem) => i.product.id === action.payload.product.id
+      );
+      if (index === -1) return;
+      ++state.cart[index].quantity;
+    },
+    decrementQuantity: (state, action: PayloadAction<CartItem>) => {
+      const index = state.cart.findIndex(
+        (i: CartItem) => i.product.id === action.payload.product.id
+      );
+      if (index === -1) return;
+      --state.cart[index].quantity;
+    },
   },
 });
 
-export const { setProducts, setBrands, setModels, addToCart, incrementQuantity } =
-  productSlice.actions;
+export const {
+  setProducts,
+  setBrands,
+  setModels,
+  addToCart,
+  incrementQuantity,
+  decrementQuantity
+} = productSlice.actions;
 export default productSlice.reducer;
