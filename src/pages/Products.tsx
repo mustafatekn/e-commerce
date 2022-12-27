@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Brands from "../components/Brands";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
@@ -18,15 +18,18 @@ export default function Products() {
   const searchedProducts = useAppSelector(state => state.products.searchedProducts);
   const productsPerPage = 16;
   const totalProductCount = searchedProducts.length > 0 ? searchedProducts.length : products.length;
-  const indexOfLastTransaction = currentPage * productsPerPage;
-  const indexOfFirstTransaction = indexOfLastTransaction - productsPerPage;
-  const currentProducts = searchedProducts.length > 0 ? searchedProducts.slice(
-    indexOfFirstTransaction,
-    indexOfLastTransaction
-  ) : products.slice(
-    indexOfFirstTransaction,
-    indexOfLastTransaction
-  )
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+
+  const currentProducts = useMemo(() => {
+    return searchedProducts.length > 0 ? searchedProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    ) : products.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    )
+  },[products, searchedProducts])
 
   const dispatch = useAppDispatch();
 
