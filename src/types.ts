@@ -26,6 +26,7 @@ export interface ProductState {
   cart: CartItem[]
   searchedProducts: Product[]
   searchedBrands: String[]
+  searchedModels: String[]
 }
 
 export interface CartItem {

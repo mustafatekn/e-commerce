@@ -7,7 +7,8 @@ const initialState: ProductState = {
   models: [],
   cart: [],
   searchedProducts: [],
-  searchedBrands: []
+  searchedBrands: [],
+  searchedModels: [],
 };
 
 export const productSlice = createSlice({
@@ -60,10 +61,15 @@ export const productSlice = createSlice({
       );
     },
     setSearchedBrands: (state, action: PayloadAction<String>) => {
-        state.searchedBrands = state.brands.filter((brand: String) =>
+      state.searchedBrands = state.brands.filter((brand: String) =>
         brand.toLowerCase().includes(action.payload.toLowerCase())
       );
-    }
+    },
+    setSearchedModels: (state, action: PayloadAction<String>) => {
+      state.searchedModels = state.models.filter((brand: String) =>
+        brand.toLowerCase().includes(action.payload.toLowerCase())
+      );
+    },
   },
 });
 
@@ -76,6 +82,7 @@ export const {
   decrementQuantity,
   setCart,
   setSearchedProducts,
-  setSearchedBrands
+  setSearchedBrands,
+  setSearchedModels
 } = productSlice.actions;
 export default productSlice.reducer;
