@@ -70,6 +70,42 @@ export const productSlice = createSlice({
         brand.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
+    sortProducts: (state, action: PayloadAction<String>) => {
+      switch (action.payload) {
+        case "lowToHigh":
+          state.products.sort(
+            (a: Product, b: Product) => parseInt(a.price) - parseInt(b.price)
+          );
+          state.searchedProducts.sort(
+            (a: Product, b: Product) => parseInt(a.price) - parseInt(b.price)
+          );
+          break;
+        case "highToLow":
+          state.products.sort(
+            (a: Product, b: Product) => parseInt(b.price) - parseInt(a.price)
+          );
+          state.searchedProducts.sort(
+            (a: Product, b: Product) => parseInt(b.price) - parseInt(a.price)
+          );
+          break;
+        case "newToOld":
+          state.products.sort((a: Product, b: Product) =>
+            a.createdAt > b.createdAt ? 1 : -1
+          );
+          state.searchedProducts.sort((a: Product, b: Product) =>
+            a.createdAt > b.createdAt ? 1 : -1
+          );
+          break;
+        case "oldToNew":
+          state.products.sort((a: Product, b: Product) =>
+            b.createdAt > a.createdAt ? 1 : -1
+          );
+          state.searchedProducts.sort((a: Product, b: Product) =>
+            b.createdAt > a.createdAt ? 1 : -1
+          );
+          break;
+      }
+    },
   },
 });
 
@@ -83,6 +119,7 @@ export const {
   setCart,
   setSearchedProducts,
   setSearchedBrands,
-  setSearchedModels
+  setSearchedModels,
+  sortProducts,
 } = productSlice.actions;
 export default productSlice.reducer;
