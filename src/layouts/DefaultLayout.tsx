@@ -5,7 +5,7 @@ import { IDefaultLayoutProps } from "../types";
 
 export default function DefaultLayout({ children }: IDefaultLayoutProps) {
     return (
-        <div className="bg-primary-white">
+        <div className="bg-primary-white min-h-screen">
             <Navbar />
             <div className="container mx-auto pt-5 flex w-full flex-1 flex-grow">
                 {children}
