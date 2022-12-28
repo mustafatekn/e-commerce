@@ -54,13 +54,13 @@ export default function Products() {
 
   return (
     <DefaultLayout>
-      <div>
+      <div className="hidden lg:block">
         <Sort />
         <Brands />
         <Models />
       </div>
-      <div>
-        <div className="grid grid-cols-4 flex-1 gap-6 mx-6">
+      <div className="w-full px-10 md:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-1 gap-6 lg:mx-6">
           {(selectedBrands.length > 0 || selectedModels.length > 0) ? filteredProducts.map((product: Product) => (
             <ProductCard product={product} key={product.id} />
           )) : currentProducts.map((product: Product) => (
