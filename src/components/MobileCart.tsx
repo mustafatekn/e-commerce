@@ -18,7 +18,7 @@ export default function MobileCart() {
 
   if (!showCart) return <></>
   return (
-    <div className="bg-white w-64 h-80 absolute top-1/3 left-1/2 -translate-x-1/2 px-3 py-2 rounded-md block lg:hidden" onClick={() => dispatch(toggleCart())}>
+    <div className="bg-white w-64 h-80 absolute top-12 left-1/2 -translate-x-1/2 px-3 py-2 rounded-md block lg:hidden" onClick={() => dispatch(toggleCart())}>
       <button className="block ml-auto text-primary-blue">x</button>
       {cart.length > 0 ? cart.map((item: CartItem, index: number) => (
         <div className="flex justify-between items-center" key={index}>

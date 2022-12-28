@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import { Product } from "../types";
 import { useAppDispatch } from "../store";
 import { addToCart } from "../store/features/productSlice";
+import MobileCart from "../components/MobileCart";
+import MobileFilter from "../components/MobileFilter";
+import MobileSort from "../components/MobileSort";
 
 export default function ProductDetails() {
     const [product, setProduct] = useState<Product>();
@@ -29,6 +32,9 @@ export default function ProductDetails() {
 
     return (
         <DefaultLayout>
+            <MobileCart />
+            <MobileFilter />
+            <MobileSort />
             {product &&
                 <div className="bg-white shadow-md mr-6">
                     <div className="flex space-x-5 p-3">

@@ -32,6 +32,7 @@ export interface ProductState {
   filteredProducts: Product[];
   showCart: boolean
   showFilter: boolean
+  showSort: boolean
 }
 
 export interface CartItem {
