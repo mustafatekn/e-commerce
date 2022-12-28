@@ -56,27 +56,25 @@ export default function Products() {
 
   return (
     <DefaultLayout>
-      <div className="container mx-auto pt-5 ">
-        <div className="flex">
-          <div>
-            <Sort />
-            <Brands />
-            <Models />
+      <div className="flex">
+        <div>
+          <Sort />
+          <Brands />
+          <Models />
+        </div>
+        <div>
+          <div className="grid grid-cols-4 flex-1 gap-6 mx-6">
+            {(selectedBrands.length > 0 || selectedModels.length > 0) ? filteredProducts.map((product: Product) => (
+              <ProductCard product={product} key={product.id} />
+            )) : currentProducts.map((product: Product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
           </div>
-          <div>
-            <div className="grid grid-cols-4 flex-1 gap-6 mx-6">
-              {(selectedBrands.length > 0 || selectedModels.length > 0) ? filteredProducts.map((product: Product) => (
-                <ProductCard product={product} key={product.id} />
-              )) : currentProducts.map((product: Product) => (
-                <ProductCard product={product} key={product.id} />
-              ))}
-            </div>
-            {currentProducts.length > 0 && <Pagination currentPage={currentPage} setCurrentPage={(currentPage: number) => setCurrentPage(currentPage)} productsPerPage={productsPerPage} totalProductCount={totalProductCount} />}
-          </div>
-          <div>
-            <Cart />
-            <Checkout />
-          </div>
+          {currentProducts.length > 0 && <Pagination currentPage={currentPage} setCurrentPage={(currentPage: number) => setCurrentPage(currentPage)} productsPerPage={productsPerPage} totalProductCount={totalProductCount} />}
+        </div>
+        <div>
+          <Cart />
+          <Checkout />
         </div>
       </div>
     </DefaultLayout>

@@ -5,7 +5,7 @@ export default function DefaultLayout({ children }: IDefaultLayoutProps) {
     return (
         <div className="bg-primary-white">
             <Navbar />
-            <div>{children}</div>
+            <div className="container mx-auto pt-5">{children}</div>
         </div>
     )
 }
