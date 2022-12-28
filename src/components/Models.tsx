@@ -13,7 +13,7 @@ export default function Models() {
       <small className="text-slate-500">Model</small>
       <div className="shadow-md bg-white py-2 my-2 pl-3">
         <div className="relative flex items-center flex-1 pr-3">
-          <input type="text" className="bg-slate-50 inline-block w-full px-7 py-1 rounded-sm my-1" placeholder="Search" onChange={(e) => {
+          <input type="text" className="bg-slate-50 inline-block w-full px-7 py-1 rounded-sm my-1 border-none" placeholder="Search" onChange={(e) => {
             setSearchText(e.target.value)
             dispatch(setSearchedModels(e.target.value))
           }} />

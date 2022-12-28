@@ -13,7 +13,7 @@ export default function Brands() {
       <small className="text-slate-500">Brands</small>
       <div className="shadow-md bg-white pl-3 py-2 my-2">
         <div className="relative flex items-center flex-1 pr-3">
-          <input type="text" className="bg-slate-50 inline-block w-full px-7 py-1 rounded-sm my-1" placeholder="Search" onChange={(e) => {
+          <input type="text" className="bg-slate-50 inline-block w-full px-7 py-1 rounded-sm my-1 border-none" placeholder="Search" onChange={(e) => {
             setSearchText(e.target.value)
             dispatch(setSearchedBrands(e.target.value))
           }} />
