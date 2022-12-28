@@ -18,6 +18,12 @@
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.checkbox-border {
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
+  box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
 }

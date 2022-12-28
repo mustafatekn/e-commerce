@@ -23,7 +23,7 @@ export default function Models() {
         </div>
         <div className="overflow-y-scroll custom-scrollbar h-48">
           {searchText ? searchedModels.map((model: String, index: number) => (
-            <div key={index}><input type="checkbox" onChange={(e) => {
+            <div key={index}><input type="checkbox" className="border-primary-blue accent-white focus:ring-transparent" onChange={(e) => {
               if (e.target.checked) {
                 dispatch(addSelectedModel(model))
                 dispatch(filterProducts())
@@ -33,7 +33,7 @@ export default function Models() {
               }
             }} /><label className="ml-2">{model}</label></div>
           )) : models.length > 0 && models.map((model: String, index: number) => (
-            <div key={index}><input type="checkbox" onChange={(e) => {
+            <div key={index}><input type="checkbox" className="border-primary-blue accent-white focus:ring-transparent" onChange={(e) => {
               if (e.target.checked) {
                 dispatch(addSelectedModel(model))
                 dispatch(filterProducts())
