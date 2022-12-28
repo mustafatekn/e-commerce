@@ -13,6 +13,7 @@ const initialState: ProductState = {
   selectedModels: [],
   filteredProducts: [],
   showCart: false,
+  showFilter: false
 };
 
 export const productSlice = createSlice({
@@ -165,6 +166,9 @@ export const productSlice = createSlice({
     toggleCart: (state) => {
       state.showCart = !state.showCart;
     },
+    toggleFilter: (state) => {
+      state.showFilter = !state.showFilter
+    }
   },
 });
 
@@ -185,6 +189,7 @@ export const {
   addSelectedModel,
   removeSelectedModel,
   filterProducts,
-  toggleCart
+  toggleCart,
+  toggleFilter
 } = productSlice.actions;
 export default productSlice.reducer;

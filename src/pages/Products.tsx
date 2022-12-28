@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Brands from "../components/Brands";
 import MobileCart from "../components/MobileCart";
+import MobileFilter from "../components/MobileFilter";
 import Models from "../components/Models";
 import Pagination from "../components/Pagination";
 import ProductCard from "../components/ProductCard";
@@ -56,6 +57,7 @@ export default function Products() {
   return (
     <DefaultLayout>
       <MobileCart/>
+      <MobileFilter/>
       <div className="hidden lg:block">
         <Sort />
         <Brands />

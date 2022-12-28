@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Search from "./Search"
 import { useCalculateTotalPrice } from "../hooks/useCalculateTotalPrice"
 import { useAppDispatch } from "../store";
-import { toggleCart } from "../store/features/productSlice";
+import { toggleCart, toggleFilter } from "../store/features/productSlice";
 
 export default function Navbar() {
     const totalPrice = useCalculateTotalPrice();
@@ -28,6 +28,9 @@ export default function Navbar() {
                 <div className="container mx-auto text-white flex items-center justify-between lg:justify-around">
                     <Link to="/" className="text-lg md:text-xl xl:text-3xl">Eteration</Link>
                     <div className="flex items-center">
+                        <button type="button" className="flex items-center" onClick={() => dispatch(toggleFilter())}><svg role="img" className="w-5 h-5 inline-block text-white ml-3" fill="white">
+                            <use xlinkHref="/assets/sprite.svg#filter" />
+                        </svg></button>
                         <button type="button" className="flex items-center" onClick={() => dispatch(toggleCart())}><svg role="img" className="w-5 h-5 inline-block text-white ml-3" fill="white">
                             <use xlinkHref="/assets/sprite.svg#cart" />
                         </svg></button>
