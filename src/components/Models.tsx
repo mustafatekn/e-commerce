@@ -9,7 +9,7 @@ export default function Models() {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="my-2 w-64">
+    <div className="my-2 md:w-48 lg:w-56 xl:w-64 text-sm xl:text-base">
       <small className="text-slate-500">Model</small>
       <div className="shadow-md bg-white py-2 my-2 pl-3">
         <div className="relative flex items-center flex-1 pr-3">

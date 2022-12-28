@@ -5,11 +5,11 @@ import { IDefaultLayoutProps } from "../types";
 
 export default function DefaultLayout({ children }: IDefaultLayoutProps) {
     return (
-        <div className="bg-primary-white flex flex-col min-h-screen">
+        <div className="bg-primary-white min-h-screen">
             <Navbar />
-            <div className="container mx-auto pt-5 flex">
+            <div className="container mx-auto pt-5 flex w-full flex-1 flex-grow">
                 {children}
-                <div>
+                <div className="hidden lg:block">
                     <Cart />
                     <Checkout />
                 </div>

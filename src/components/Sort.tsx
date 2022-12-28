@@ -12,7 +12,7 @@ export default function Sort() {
   };
 
   return (
-    <div className="my-2 w-64">
+    <div className="my-2 md:w-48 lg:w-56 xl:w-64 text-sm xl:text-base">
       <small className="text-slate-500">Sort By</small>
       <div className="shadow-md bg-white px-5 py-2 my-2">
         <div><input type="radio" onChange={(e) => e.target.checked && handleChange("oldToNew")} checked={sortMethod === 'oldToNew'} id="oldToNew" /><label htmlFor="oldToNew" className="ml-2 cursor-pointer">Old to new</label></div>

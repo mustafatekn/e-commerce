@@ -30,6 +30,9 @@ export interface ProductState {
   selectedBrands: String[];
   selectedModels: String[];
   filteredProducts: Product[];
+  showCart: boolean
+  showFilter: boolean
+  showSort: boolean
 }
 
 export interface CartItem {
