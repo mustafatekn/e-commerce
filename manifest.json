@@ -1,0 +1,6 @@
+{
+  "name": "nm-test",
+  "short_name": "nm-test",
+  "gcm_sender_id": "340897854500", 
+  "gcm_user_visible_only": true
+}
