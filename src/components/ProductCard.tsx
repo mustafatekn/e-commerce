@@ -9,6 +9,14 @@ export default function ProductCard(props: IProductCardProps) {
 
     const handleClick = (product: Product) => {
         dispatch(addToCart(product));
+        // @ts-ignore
+        netmera.push(function (api: any) {
+            const AddToCart = {
+                code: 'oyeqw',
+                ea: product.name
+            };
+            api.sendEvent(AddToCart);
+        });
     };
 
     return (
