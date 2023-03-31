@@ -4,9 +4,10 @@ export default function Checkout() {
     const totalPrice = useCalculateTotalPrice();
 
     const fireNetmeraEventOnCheckout = () => {
+        debugger;
         const TotalPrice: { code: string, ec: number } = { code: "cemzo", ec: totalPrice }
         // @ts-ignore
-        window.netmera.push(function (api: any) {
+        netmera.push(function (api: any) {
             api.sendEvent(TotalPrice);
         });
     }
