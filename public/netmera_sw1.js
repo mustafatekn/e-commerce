@@ -1,1 +1,3 @@
-var netmera;importScripts("https://ntm.netmera-web.com/wsdk2/netmera_sw.js?v=4.2.7"),netmera={};
+var netmera;(()=>{var __webpack_modules__=({"./service_worker/netmera_sw1.js":/*!***************************************!*\
+!*** ./service_worker/netmera_sw1.js ***!
+\***************************************/(()=>{eval("importScripts(\"https://ntmdev.netmera-web.com\" + '/wsdk2/netmera_sw.js?v=' + \"4.2.19\");\n\n//# sourceURL=webpack://netmera/./service_worker/netmera_sw1.js?");})});var __webpack_exports__={};__webpack_modules__["./service_worker/netmera_sw1.js"]();netmera=__webpack_exports__;})();
