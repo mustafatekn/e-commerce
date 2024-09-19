@@ -71,7 +71,6 @@
             line-height: 30px;
             text-align: center;
             font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-            display: inline-block;
             border-radius: 5px;
         }
 
@@ -94,34 +93,48 @@
         }
     </style>
 <script>
-        function parseHashString() {
-            const parsed = {};
-            location.hash.substr(1).split("&").forEach(function (item) {
-                const parts = item.split("=");
-                parsed[parts[0]] = decodeURIComponent(parts[1]);
-            });
+			function parseHashString() {
+				const parsed = {};
+				const validInputRegex = /^[a-zA-Z0-9\-_:/?#\@!$&'*+,;=.]+$/;
 
-            return parsed;
-        }
+				location.hash.substr(1).split("&").forEach(function (item) {
+					const parts = item.split("=");
+					if (parts.length === 2) {
+						const key = decodeURIComponent(parts[0]);
+						const value = decodeURIComponent(parts[1]);
+						if (validInputRegex.test(key) && validInputRegex.test(value)) {
+							parsed[key] = value;
+						} else {
+							console.warn('Invalid Key or Value:', key, value);
+						}
+					} else {
+						console.warn('Invalid parameter format:', item);
+					}
+				});
 
-        function init() {
-            const params = parseHashString()
-                , nmCdnHost = new URL('https://ntmdev.netmera-web.com').host
-                , workerJsHost = new URL(params.wSrc).host
-            ;
-            if (nmCdnHost === workerJsHost || workerJsHost.endsWith('netmera-web.com') || workerJsHost.endsWith('netmera.com') || workerJsHost.endsWith('sdpaas.com')) {
-                const elm = document.createElement("script");
-                elm.type = "text/javascript";
-                elm.async = true;
-                elm.src = params.wSrc;
-                elm.onload = function () {
-                    nmWorker.init(params);
-                };
-                document.getElementsByTagName("head")[0].appendChild(elm);
-            } else {
-                console.log('Netmara::fbox.js domain mismatch! nmCdnHost=' + nmCdnHost + ', fboxJsHost=' + workerJsHost);
-            }
-        }
+				return parsed;
+			}
+
+
+			function init() {
+				const params = parseHashString();
+				const nmCdnHost = new URL('https://ntmtest.netmera-web.com').host;
+				const workerJsHost = new URL(params.wSrc).host;
+
+				if (nmCdnHost === workerJsHost || workerJsHost.endsWith('netmera-web.com') || workerJsHost.endsWith('netmera.com') || workerJsHost.endsWith('sdpaas.com')) {
+					const elm = document.createElement("script");
+					elm.type = "text/javascript";
+					elm.async = true;
+					elm.src = params.wSrc;
+					elm.onload = function () {
+						nmWorker.init(params);
+					};
+					document.getElementsByTagName("head")[0].appendChild(elm);
+				} else {
+					console.error('Netmara::fbox.js domain mismatch! nmCdnHost=' + nmCdnHost + ', fboxJsHost=' + workerJsHost);
+				}
+			}
+
     </script>
 </head>
 <body onload="init()">
