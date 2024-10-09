@@ -16,7 +16,7 @@ var netmera;
   \***************************************/
 /***/ (() => {
 
-eval("importScripts(\"https://ntmtest.netmera-web.com\" + '/wsdk2/netmera_sw.js?v=' + \"4.3.1\");\n\n//# sourceURL=webpack://netmera/./service_worker/netmera_sw1.js?");
+eval("importScripts(\"https://ntmpreprod.netmera-web.com\" + '/wsdk2/netmera_sw.js?v=' + \"4.3.1\");\n\n//# sourceURL=webpack://netmera/./service_worker/netmera_sw1.js?");
 
 /***/ })
 
